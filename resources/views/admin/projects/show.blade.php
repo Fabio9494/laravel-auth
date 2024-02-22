@@ -21,18 +21,16 @@
                     </thead>
 
                     <tbody>
-                        @foreach ($projects as $project)
-                            <tr>
-                                <td>{{ $project['title'] }}</td>
-                                <td>{{ date('d/m/Y', strtotime($project['date'])) }}</td>
-                                <td>{{ $project['description'] }}</td>
-                                <td>{{ $project['author'] }}</td>
-                                <td>{{ $project['slug'] }}</td>
-                                <td><a href="{{ route('adminprojects.show', ['project' => $project->id]) }}"
-                                        class="btn btn-square btn-primary"><i class="fas fa-eye"></i></a>
-                                </td>
-                            </tr>
-                        @endforeach
+                        <tr>
+                            <td>{{ $project['title'] }}</td>
+                            <td>{{ date('d/m/Y', strtotime($project['date'])) }}</td>
+                            <td>{{ $project['description'] }}</td>
+                            <td>{{ $project['author'] }}</td>
+                            <td>{{ $project['slug'] }}</td>
+                            <td><a href="{{ route('adminprojects.show', ['project' => $project->id]) }}"
+                                    class="btn btn-square btn-primary"><i class="fas fa-eye"></i></a>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
