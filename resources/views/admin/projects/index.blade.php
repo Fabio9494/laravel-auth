@@ -31,6 +31,8 @@
                                 <td>{{ $project['slug'] }}</td>
                                 <td><a href="{{ route('adminprojects.show', ['project' => $project->id]) }}"
                                         class="btn btn-square btn-primary"><i class="fas fa-eye"></i></a>
+                                    <a href="{{ route('adminprojects.edit', ['project' => $project->id]) }}"
+                                        class="btn btn-square btn-warning"><i class="fas fa-edit"></i></a>
                                 </td>
                             </tr>
                         @endforeach
