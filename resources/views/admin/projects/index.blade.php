@@ -3,8 +3,9 @@
 @section('content')
     <div class="container">
         <h2 class="fs-4 text-secondary my-4">
-            {{ __('Dashboard') }}
+            PROGETTI
         </h2>
+        <div><a href="{{ route('adminprojects.create') }}" class="btn btn-square btn-primary">CREA NUOVO PROGETTO</a></div>
         <div class="row justify-content-center">
             <div class="col">
 
