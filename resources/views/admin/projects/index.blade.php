@@ -5,7 +5,8 @@
         <h2 class="fs-4 text-secondary my-4">
             PROGETTI
         </h2>
-        <div><a href="{{ route('adminprojects.create') }}" class="btn btn-square btn-primary">CREA NUOVO PROGETTO</a></div>
+        <div><a href="{{ route('adminprojects.create') }}" class="btn btn-square btn-primary">CREA NUOVO PROGETTO</a>
+        </div>
         <div class="row justify-content-center">
             <div class="col">
 
@@ -30,9 +31,17 @@
                                 <td>{{ $project['author'] }}</td>
                                 <td>{{ $project['slug'] }}</td>
                                 <td><a href="{{ route('adminprojects.show', ['project' => $project->id]) }}"
-                                        class="btn btn-square btn-primary"><i class="fas fa-eye"></i></a>
+                                        class="btn btn-square btn-sm btn-primary"><i class="fas fa-eye"></i></a>
                                     <a href="{{ route('adminprojects.edit', ['project' => $project->id]) }}"
-                                        class="btn btn-square btn-warning"><i class="fas fa-edit"></i></a>
+                                        class="btn btn-square btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+
+                                    <form action="{{ route('adminprojects.destroy', ['project' => $project->id]) }}"
+                                        method="POST" onsubmit="return confirm('Eliminare questo elemento?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger"><i
+                                                class="fas fa-trash"></i></button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
