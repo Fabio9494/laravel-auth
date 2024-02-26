@@ -33,6 +33,10 @@
                         </tr>
                     </tbody>
                 </table>
+                <div>
+                    <img src="{{ $project->img !== null ? asset('/storage/' . $project->img) : '/img/imgnull.jpg' }}"
+                        alt="">
+                </div>
             </div>
         </div>
     </div>

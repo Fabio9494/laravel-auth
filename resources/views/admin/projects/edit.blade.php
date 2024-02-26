@@ -16,7 +16,7 @@
                 </div>
             @endif
             <div class="col-12">
-                <form action="{{ route('adminprojects.update', $project) }}" method="post">
+                <form action="{{ route('adminprojects.update', $project) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="form-group">
@@ -53,6 +53,21 @@
                         <input type="text" name="author" id="author" value="{{ old('author') ?? $project->author }}"
                             class="form-control @error('author') is-invalid @enderror" required>
                         @error('author')
+                            <p class="text-danger fw-bold">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        @if ($project->img != null)
+                            <div>
+                                <img src="{{ asset('/storage/' . $project->img) }}" alt="">
+                            </div>
+                        @else
+                            <h4>Immagine non presnte</h4>
+                        @endif
+                        <label for="img">immagine</label>
+                        <input type="file" name="img" id="img"
+                            class="form-control @error('img') is-invalid @enderror">
+                        @error('img')
                             <p class="text-danger fw-bold">{{ $message }}</p>
                         @enderror
                     </div>

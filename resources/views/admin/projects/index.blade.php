@@ -17,6 +17,7 @@
                             <th>DATA</th>
                             <th>DESCRIZIONE</th>
                             <th>AUTORE</th>
+                            <th>IMG</th>
                             <th>SLAG</th>
                             <th>TOOLS</th>
                         </tr>
@@ -29,6 +30,7 @@
                                 <td>{{ date('d/m/Y', strtotime($project['date'])) }}</td>
                                 <td>{{ $project['description'] }}</td>
                                 <td>{{ $project['author'] }}</td>
+                                <td>{{ $project['img'] }}</td>
                                 <td>{{ $project['slug'] }}</td>
                                 <td><a href="{{ route('adminprojects.show', ['project' => $project->id]) }}"
                                         class="btn btn-square btn-sm btn-primary"><i class="fas fa-eye"></i></a>

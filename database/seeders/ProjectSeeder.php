@@ -27,6 +27,7 @@ class ProjectSeeder extends Seeder
             $project->date = $faker->dateTimeBetween('-3 days','+3 days');
             $project->description = $faker->text(200);
             $project->author = $faker->words(3,true);
+            
             $project->slug = Str::slug($project->title,'-');
             $project->save();
         }

@@ -16,7 +16,7 @@
                 </div>
             @endif
             <div class="col-12">
-                <form action="{{ route('adminprojects.store') }}" method="post">
+                <form action="{{ route('adminprojects.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="title">Titolo</label>
@@ -50,6 +50,15 @@
                             <p class="text-danger fw-bold">{{ $message }}</p>
                         @enderror
                     </div>
+                    <div class="form-group">
+                        <label for="img">immagine</label>
+                        <input type="file" name="img" id="img"
+                            class="form-control @error('img') is-invalid @enderror" required>
+                        @error('img')
+                            <p class="text-danger fw-bold">{{ $message }}</p>
+                        @enderror
+                    </div>
+
                     <div>
                         <button type="submit" class="btn btn-primary my-3">SALVA</button>
                     </div>

@@ -6,7 +6,11 @@ use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+
+
 
 class ProjectController extends Controller
 {
@@ -42,6 +46,11 @@ class ProjectController extends Controller
         $form_data = $request->all();
 
         $project = new Project();
+
+        if($request->hasFile('img')){
+            $path=Storage::disk('public')->put('post_image',$form_data['img']);
+            $form_data['img']=$path;
+        }
 
         $project->fill($form_data);
 
@@ -85,6 +94,16 @@ class ProjectController extends Controller
     {
         $form_data = $request->all();
 
+        if($request->hasFile('img')){
+
+            if($project->img != null){
+                Storage::delete($project->img);
+            }
+
+            $path=Storage::disk('public')->put('post_image',$form_data['img']);
+            $form_data['img']=$path;
+        }
+
         $slug=Str::slug($form_data['title'],'-');
         $form_data['slug'] = $slug;
 
@@ -100,6 +119,10 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        if($project->img != null){
+            Storage::disk('public')->delete($project->img);
+        }
+
         $project->delete();
         return redirect()->route('adminprojects.index');
     }
